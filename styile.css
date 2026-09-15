@@ -1,0 +1,232 @@
+```css
+/* ==============================
+   CSS RESET
+============================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ==============================
+   BODY
+============================== */
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    min-height: 100vh;
+
+    /* LINEAR GRADIENT */
+    background: linear-gradient(135deg, #667eea, #764ba2);
+
+    color: #333;
+    padding-bottom: 40px;
+}
+
+
+/* ==============================
+   NAVIGASI
+============================== */
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+
+    padding: 20px;
+
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+
+    padding: 8px 15px;
+    border-radius: 20px;
+
+    /* TRANSITION */
+    transition: all 0.3s ease;
+}
+
+
+/* HOVER + TRANSFORM */
+
+nav a:hover {
+    background: white;
+    color: #667eea;
+
+    /* TRANSFORM */
+    transform: translateY(-3px) scale(1.05);
+}
+
+
+/* ==============================
+   JUDUL
+============================== */
+
+h1 {
+    text-align: center;
+    color: white;
+    font-size: 42px;
+
+    margin-top: 50px;
+    margin-bottom: 20px;
+
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ==============================
+   PARAGRAF
+============================== */
+
+body > p {
+    max-width: 800px;
+    margin: 10px auto;
+    padding: 15px 25px;
+
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ==============================
+   CONTAINER
+============================== */
+
+body {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+/* ==============================
+   JUDUL H2
+============================== */
+
+h2 {
+    color: #667eea;
+    margin-bottom: 15px;
+    border-bottom: 3px solid #667eea;
+    padding-bottom: 8px;
+}
+
+
+/* ==============================
+   CARD UNTUK BAGIAN
+============================== */
+
+h2,
+ul,
+ol,
+img {
+    position: relative;
+}
+
+
+/* Membuat bagian setelah paragraf lebih rapi */
+
+body > h2 {
+    max-width: 800px;
+    margin: 30px auto 10px;
+    background: white;
+    padding: 15px 25px;
+    border-radius: 15px 15px 0 0;
+}
+
+
+/* ==============================
+   LIST
+============================== */
+
+ul,
+ol {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 50px;
+
+    background: white;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Jarak antar list */
+
+li {
+    padding: 8px;
+    margin: 5px 0;
+
+    border-radius: 8px;
+
+    transition: all 0.3s ease;
+}
+
+
+/* HOVER LIST */
+
+li:hover {
+    background: #667eea;
+    color: white;
+
+    transform: translateX(8px);
+}
+
+
+/* ==============================
+   FOTO
+============================== */
+
+body > img {
+    display: block;
+
+    width: 220px;
+    height: 220px;
+
+    object-fit: cover;
+
+    margin: 20px auto;
+
+    border-radius: 50%;
+
+    border: 6px solid white;
+
+    /* BOX SHADOW */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+    /* TRANSITION */
+    transition: all 0.4s ease;
+}
+
+
+/* HOVER FOTO */
+
+body > img:hover {
+    transform: scale(1.08) rotate(2deg);
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+
+/* ==============================
+   INSTAGRAM
+============================== */
+
+body > a {
+    display: block;
+
+    width: fit-content;
+
+    margin
+```
