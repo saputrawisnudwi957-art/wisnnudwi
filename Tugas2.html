@@ -77,9 +77,7 @@ let pilihan = [];
 let pilihanSaya = "";
 
 
-// ======================================
-// 1. NAMA DAN JUMLAH PILIHAN
-// ======================================
+
 
 function buatPilihan() {
 
@@ -137,10 +135,6 @@ function buatPilihan() {
 
 
 
-// ======================================
-// 2. MEMBUAT RADIO BUTTON
-// ======================================
-
 function buatRadio() {
 
     pilihan = [];
@@ -195,12 +189,6 @@ function buatRadio() {
         hasil;
 }
 
-
-
-// ======================================
-// 3. PILIHAN + EMAIL
-// ======================================
-
 function buatEmail() {
 
     let pilihanDipilih =
@@ -217,7 +205,7 @@ function buatEmail() {
     }
 
 
-    // SIMPAN PILIHAN
+    // PILIHAN FITUR
     pilihanSaya = pilihanDipilih.value;
 
 
@@ -242,11 +230,6 @@ function buatEmail() {
 }
 
 
-
-// ======================================
-// 4. HASIL AKHIR
-// ======================================
-
 function hasilAkhir() {
 
     let email =
@@ -263,8 +246,6 @@ function hasilAkhir() {
     }
 
 
-    // CEK FORMAT EMAIL
-
     let polaEmail =
         /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -280,7 +261,6 @@ function hasilAkhir() {
     }
 
 
-    // MEMBUAT DAFTAR PILIHAN
 
     let daftarPilihan = "";
 
@@ -300,7 +280,6 @@ function hasilAkhir() {
     }
 
 
-    // HASIL AKHIR
 
     let hasil = "";
 

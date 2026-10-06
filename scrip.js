@@ -2,7 +2,6 @@ let nama = "";
 let jumlah = 0;
 let pilihan = [];
 
-// LANGKAH 1
 function buatPilihan() {
 
     nama = document.getElementById("nama").value.trim();
@@ -50,7 +49,6 @@ function buatPilihan() {
 }
 
 
-// LANGKAH 2
 function buatRadio() {
 
     pilihan = [];
@@ -100,7 +98,6 @@ function buatRadio() {
 }
 
 
-// LANGKAH 3
 function buatEmail() {
 
     let dipilih = document.querySelector(
@@ -143,7 +140,6 @@ function buatEmail() {
 }
 
 
-// LANGKAH 4
 function hasilAkhir() {
 
     let email = document.getElementById("email").value.trim();
