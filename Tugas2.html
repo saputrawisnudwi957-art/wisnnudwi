@@ -9,64 +9,64 @@
 
 <body>
 
-    <h1>Halo, ini cerita saya</h1>
+<h1>Halo, ini cerita saya</h1>
 
-    <p align="left">
-        <b>Nama saya Wisnu</b>, saya suka
-        <i>ngoding</i> dan <u>main game</u>.
-    </p>
+<p>
+    <b>Nama saya Wisnu</b>, saya suka
+    <i>ngoding</i> dan <u>main game</u>.
+</p>
 
-    <p align="center" style="color:blue;">
-        Saya kuliah di Universitas Sanata Dharma.
-    </p>
+<p align="center" style="color:blue;">
+    Saya kuliah di Universitas Sanata Dharma.
+</p>
 
-    <h2>Daftar Hobi</h2>
+<h2>Daftar Hobi</h2>
 
-    <ul>
-        <li>Programming</li>
-        <li>Gaming</li>
-        <li>Futsal</li>
-    </ul>
+<ul>
+    <li>Programming</li>
+    <li>Gaming</li>
+    <li>Futsal</li>
+</ul>
 
-    <h2>Langkah Harian</h2>
+<h2>Langkah Harian</h2>
 
-    <ol>
-        <li>Bangun pagi</li>
-        <li>Kuliah</li>
-        <li>Ngoding</li>
-    </ol>
+<ol>
+    <li>Bangun pagi</li>
+    <li>Kuliah</li>
+    <li>Ngoding</li>
+</ol>
 
-    <h2>Foto saya</h2>
+<h2>Foto saya</h2>
 
-    <img src="WhatsApp Image 2026-09-22 at 14.05.03.jpeg"
-         alt="Foto Wisnu"
-         width="200">
+<img src="WhatsApp Image 2026-09-22 at 14.05.03.jpeg"
+     alt="Foto Wisnu"
+     width="200">
 
-    <h2>Instagram</h2>
+<h2>Instagram</h2>
 
-    <a href="https://www.instagram.com/ignatiuswisnu_">
-        Kunjungi Instagram
-    </a>
+<a href="https://www.instagram.com/ignatiuswisnu_">
+    Kunjungi Instagram
+</a>
 
-    <hr>
+<hr>
 
-    <h2>Tugas 4 - JavaScript</h2>
+<h2>Tugas 4 - JavaScript</h2>
 
-    <div id="program">
+<div id="program">
 
-        <label>Nama :</label>
-        <input type="text" id="nama">
+    Nama :
+    <input type="text" id="nama">
 
-        <br><br>
+    <br><br>
 
-        <label>Jumlah Pilihan :</label>
-        <input type="number" id="jumlah">
+    Jumlah Pilihan :
+    <input type="number" id="jumlah" min="1">
 
-        <br><br>
+    <br><br>
 
-        <button onclick="buatPilihan()">OK</button>
+    <button onclick="buatPilihan()">OK</button>
 
-    </div>
+</div>
 
 
 <script>
@@ -74,11 +74,12 @@
 let nama = "";
 let jumlah = 0;
 let pilihan = [];
+let pilihanSaya = "";
 
 
-// ================================
-// INPUT NAMA DAN JUMLAH PILIHAN
-// ================================
+// ======================================
+// 1. NAMA DAN JUMLAH PILIHAN
+// ======================================
 
 function buatPilihan() {
 
@@ -88,7 +89,7 @@ function buatPilihan() {
         document.getElementById("jumlah").value
     );
 
-    if (nama === "") {
+    if (nama == "") {
         alert("Nama harus diisi!");
         return;
     }
@@ -120,13 +121,15 @@ function buatPilihan() {
 
         hasil += "Pilihan " + i + " : ";
 
-        hasil += "<input type='text' id='pilihan" + i + "'>";
+        hasil +=
+            "<input type='text' id='pilihan" + i + "'>";
 
         hasil += "<br><br>";
     }
 
 
-    hasil += "<button onclick='buatRadio()'>OK</button>";
+    hasil +=
+        "<button onclick='buatRadio()'>OK</button>";
 
 
     document.getElementById("program").innerHTML = hasil;
@@ -134,9 +137,9 @@ function buatPilihan() {
 
 
 
-// ================================
-// MEMBUAT RADIO BUTTON
-// ================================
+// ======================================
+// 2. MEMBUAT RADIO BUTTON
+// ======================================
 
 function buatRadio() {
 
@@ -145,12 +148,18 @@ function buatRadio() {
     for (let i = 1; i <= jumlah; i++) {
 
         let teks =
-            document.getElementById("pilihan" + i).value.trim();
+            document.getElementById(
+                "pilihan" + i
+            ).value.trim();
 
 
-        if (teks === "") {
+        if (teks == "") {
 
-            alert("Pilihan " + i + " harus diisi!");
+            alert(
+                "Pilihan " +
+                i +
+                " harus diisi!"
+            );
 
             return;
         }
@@ -162,13 +171,14 @@ function buatRadio() {
 
     let hasil = "";
 
-    hasil += "<h3>Pilihan</h3>";
+    hasil += "<h3>Pilihan :</h3>";
 
 
     for (let i = 0; i < pilihan.length; i++) {
 
         hasil +=
-            "<input type='radio' name='pilihan' " +
+            "<input type='radio' " +
+            "name='pilihan' " +
             "value='" + pilihan[i] + "'> ";
 
         hasil += pilihan[i];
@@ -177,17 +187,19 @@ function buatRadio() {
     }
 
 
-    hasil += "<button onclick='buatEmail()'>OK</button>";
+    hasil +=
+        "<button onclick='buatEmail()'>OK</button>";
 
 
-    document.getElementById("program").innerHTML = hasil;
+    document.getElementById("program").innerHTML =
+        hasil;
 }
 
 
 
-// ================================
-// INPUT EMAIL
-// ================================
+// ======================================
+// 3. PILIHAN + EMAIL
+// ======================================
 
 function buatEmail() {
 
@@ -205,27 +217,35 @@ function buatEmail() {
     }
 
 
+    // SIMPAN PILIHAN
+    pilihanSaya = pilihanDipilih.value;
+
+
     let hasil = "";
 
     hasil += "<h3>Email</h3>";
 
     hasil += "Email : ";
 
-    hasil += "<input type='text' id='email'>";
+    hasil +=
+        "<input type='text' id='email' " +
+        "placeholder='contoh@gmail.com'>";
 
     hasil += "<br><br>";
 
-    hasil += "<button onclick='hasilAkhir()'>OK</button>";
+    hasil +=
+        "<button onclick='hasilAkhir()'>OK</button>";
 
 
-    document.getElementById("program").innerHTML = hasil;
+    document.getElementById("program").innerHTML =
+        hasil;
 }
 
 
 
-// ================================
-// HASIL AKHIR
-// ================================
+// ======================================
+// 4. HASIL AKHIR
+// ======================================
 
 function hasilAkhir() {
 
@@ -233,7 +253,9 @@ function hasilAkhir() {
         document.getElementById("email").value.trim();
 
 
-    if (email === "") {
+    // CEK EMAIL KOSONG
+
+    if (email == "") {
 
         alert("Email harus diisi!");
 
@@ -241,7 +263,7 @@ function hasilAkhir() {
     }
 
 
-    // pengecekan email
+    // CEK FORMAT EMAIL
 
     let polaEmail =
         /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -249,45 +271,36 @@ function hasilAkhir() {
 
     if (!polaEmail.test(email)) {
 
-        alert("Format email tidak valid!");
-
-        return;
-    }
-
-
-    let pilihanDipilih =
-        document.querySelector(
-            "input[name='pilihan']:checked"
+        alert(
+            "Format email tidak valid!\n" +
+            "Contoh: wisnu@gmail.com"
         );
 
-
-    if (!pilihanDipilih) {
-
-        alert("Silakan pilih pilihan!");
-
         return;
     }
 
 
-    let pilihanSaya =
-        pilihanDipilih.value;
+    // MEMBUAT DAFTAR PILIHAN
 
-
-    let daftar = "";
+    let daftarPilihan = "";
 
 
     for (let i = 0; i < pilihan.length; i++) {
 
-        if (i === pilihan.length - 1) {
+        if (i == pilihan.length - 1) {
 
-            daftar += "dan " + pilihan[i];
+            daftarPilihan +=
+                "dan " + pilihan[i];
 
         } else {
 
-            daftar += pilihan[i] + ", ";
+            daftarPilihan +=
+                pilihan[i] + ", ";
         }
     }
 
+
+    // HASIL AKHIR
 
     let hasil = "";
 
@@ -304,7 +317,7 @@ function hasilAkhir() {
         " Saya mempunyai sejumlah <b>" +
         jumlah +
         "</b> pilihan yaitu <b>" +
-        daftar +
+        daftarPilihan +
         "</b>.";
 
     hasil +=
@@ -313,7 +326,8 @@ function hasilAkhir() {
         "</b>.";
 
 
-    document.getElementById("program").innerHTML = hasil;
+    document.getElementById("program").innerHTML =
+        hasil;
 }
 
 </script>
