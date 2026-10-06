@@ -1,402 +1,192 @@
-document.addEventListener("DOMContentLoaded", function () {
+let nama = "";
+let jumlah = 0;
+let pilihan = [];
 
-    // ==========================================
-    // ARRAY UNTUK MENYIMPAN PILIHAN
-    // ==========================================
+// LANGKAH 1
+function buatPilihan() {
 
-    const pilihanCheckbox = [
-        "Programming",
-        "Gaming",
-        "Futsal",
-        "Membaca",
-        "Menonton Film"
-    ];
+    nama = document.getElementById("nama").value.trim();
+    jumlah = parseInt(document.getElementById("jumlah").value);
 
-    const pilihanDropdown = [
-        "Informatika",
-        "Sistem Informasi",
-        "Teknik Informatika",
-        "Teknik Komputer",
-        "Manajemen"
-    ];
+    if (nama === "") {
+        alert("Nama harus diisi!");
+        return;
+    }
 
-    const pilihanRadio = [
-        "Mahasiswa",
-        "Pelajar",
-        "Pekerja"
-    ];
+    if (isNaN(jumlah) || jumlah < 1) {
+        alert("Jumlah pilihan harus diisi dengan angka minimal 1!");
+        return;
+    }
 
+    let html = `
+        <h3>Data Diri</h3>
 
-    // ==========================================
-    // MEMBUAT FORM DENGAN JAVASCRIPT DOM
-    // ==========================================
+        <label>Nama :</label>
+        <input type="text" value="${nama}" readonly>
 
-    const form = document.createElement("div");
+        <br><br>
 
-    form.style.margin = "30px";
-    form.style.padding = "20px";
-    form.style.border = "2px solid #333";
-    form.style.borderRadius = "10px";
-    form.style.maxWidth = "500px";
+        <label>Jumlah Pilihan :</label>
+        <input type="number" value="${jumlah}" readonly>
 
+        <br><br>
 
-    // ==========================================
-    // INPUT TEXT
-    // ==========================================
+        <h3>Masukkan Pilihan</h3>
+    `;
 
-    const judulText = document.createElement("h2");
-    judulText.textContent = "Input Data";
-    form.appendChild(judulText);
+    for (let i = 1; i <= jumlah; i++) {
+        html += `
+            <label>Pilihan ${i} :</label>
+            <input type="text" id="pilihan${i}" placeholder="Teks Pilihan ${i}">
+            <br><br>
+        `;
+    }
 
-    const labelNama = document.createElement("label");
-    labelNama.textContent = "Nama:";
-    form.appendChild(labelNama);
+    html += `
+        <button onclick="buatRadio()">OK</button>
+    `;
 
-    form.appendChild(document.createElement("br"));
+    document.getElementById("program").innerHTML = html;
+}
 
-    const inputNama = document.createElement("input");
-    inputNama.type = "text";
-    inputNama.placeholder = "Masukkan nama";
-    inputNama.id = "nama";
-    inputNama.style.width = "250px";
-    form.appendChild(inputNama);
 
+// LANGKAH 2
+function buatRadio() {
 
-    form.appendChild(document.createElement("br"));
-    form.appendChild(document.createElement("br"));
+    pilihan = [];
 
+    for (let i = 1; i <= jumlah; i++) {
 
-    // ==========================================
-    // INPUT NUMBER / SPINNER
-    // ==========================================
+        let teks = document.getElementById("pilihan" + i).value.trim();
 
-    const labelJumlah = document.createElement("label");
-    labelJumlah.textContent = "Jumlah pilihan (1-5):";
-    form.appendChild(labelJumlah);
-
-    form.appendChild(document.createElement("br"));
-
-    const inputJumlah = document.createElement("input");
-    inputJumlah.type = "number";
-    inputJumlah.min = "1";
-    inputJumlah.max = "5";
-    inputJumlah.value = "3";
-    inputJumlah.id = "jumlah";
-    form.appendChild(inputJumlah);
-
-
-    form.appendChild(document.createElement("br"));
-    form.appendChild(document.createElement("br"));
-
-
-    // ==========================================
-    // INPUT EMAIL
-    // ==========================================
-
-    const labelEmail = document.createElement("label");
-    labelEmail.textContent = "Email:";
-    form.appendChild(labelEmail);
-
-    form.appendChild(document.createElement("br"));
-
-    const inputEmail = document.createElement("input");
-    inputEmail.type = "text";
-    inputEmail.placeholder = "contoh@email.com";
-    inputEmail.id = "email";
-    inputEmail.style.width = "250px";
-    form.appendChild(inputEmail);
-
-
-    form.appendChild(document.createElement("br"));
-    form.appendChild(document.createElement("br"));
-
-
-    // ==========================================
-    // CHECKBOX
-    // ==========================================
-
-    const judulCheckbox = document.createElement("h3");
-    judulCheckbox.textContent = "Pilih Hobi:";
-    form.appendChild(judulCheckbox);
-
-    const checkboxContainer = document.createElement("div");
-    checkboxContainer.id = "checkboxContainer";
-    form.appendChild(checkboxContainer);
-
-
-    // ==========================================
-    // DROPDOWN
-    // ==========================================
-
-    const judulDropdown = document.createElement("h3");
-    judulDropdown.textContent = "Pilih Program Studi:";
-    form.appendChild(judulDropdown);
-
-    const dropdown = document.createElement("select");
-    dropdown.id = "dropdown";
-
-    pilihanDropdown.forEach(function (pilihan) {
-
-        const option = document.createElement("option");
-
-        option.value = pilihan;
-        option.textContent = pilihan;
-
-        dropdown.appendChild(option);
-    });
-
-    form.appendChild(dropdown);
-
-
-    form.appendChild(document.createElement("br"));
-    form.appendChild(document.createElement("br"));
-
-
-    // ==========================================
-    // RADIO BUTTON
-    // ==========================================
-
-    const judulRadio = document.createElement("h3");
-    judulRadio.textContent = "Status:";
-    form.appendChild(judulRadio);
-
-    const radioContainer = document.createElement("div");
-    radioContainer.id = "radioContainer";
-    form.appendChild(radioContainer);
-
-
-    // ==========================================
-    // TOMBOL OUTPUT
-    // ==========================================
-
-    const tombol = document.createElement("button");
-    tombol.textContent = "Tampilkan Data";
-    tombol.style.marginTop = "15px";
-    tombol.style.padding = "8px 15px";
-
-    form.appendChild(tombol);
-
-
-    // ==========================================
-    // TEMPAT OUTPUT
-    // ==========================================
-
-    const outputJudul = document.createElement("h3");
-    outputJudul.textContent = "Output:";
-    form.appendChild(outputJudul);
-
-    const output = document.createElement("div");
-    output.id = "output";
-    output.style.padding = "10px";
-    output.style.border = "1px solid #999";
-    output.style.minHeight = "50px";
-
-    form.appendChild(output);
-
-
-    // Masukkan form ke halaman HTML
-    document.body.insertBefore(form, document.body.firstChild);
-
-
-    // ==========================================
-    // FUNGSI MEMBUAT CHECKBOX DAN RADIO
-    // BERDASARKAN JUMLAH PILIHAN
-    // ==========================================
-
-    function buatPilihan() {
-
-        checkboxContainer.innerHTML = "";
-        radioContainer.innerHTML = "";
-
-        let jumlah = parseInt(inputJumlah.value);
-
-        // Error handling number
-        if (isNaN(jumlah) || jumlah < 1 || jumlah > 5) {
-
-            alert("Jumlah pilihan harus antara 1 sampai 5!");
-
-            inputJumlah.value = 3;
-            jumlah = 3;
+        if (teks === "") {
+            alert("Pilihan " + i + " harus diisi!");
+            return;
         }
 
+        pilihan.push(teks);
+    }
 
-        // LOOP CHECKBOX
-        for (let i = 0; i < jumlah; i++) {
+    let html = `
+        <h3>Data Diri</h3>
 
-            const label = document.createElement("label");
+        <p>Nama : ${nama}</p>
+        <p>Jumlah Pilihan : ${jumlah}</p>
 
-            const checkbox = document.createElement("input");
+        <h3>Pilihan :</h3>
+    `;
 
-            checkbox.type = "checkbox";
-            checkbox.name = "hobi";
-            checkbox.value = pilihanCheckbox[i];
+    for (let i = 0; i < pilihan.length; i++) {
 
-            label.appendChild(checkbox);
-            label.appendChild(
-                document.createTextNode(" " + pilihanCheckbox[i])
-            );
+        html += `
+            <input type="radio"
+                   name="pilihan"
+                   value="${pilihan[i]}"
+                   id="radio${i}">
 
-            checkboxContainer.appendChild(label);
-            checkboxContainer.appendChild(
-                document.createElement("br")
-            );
-        }
+            <label for="radio${i}">
+                ${pilihan[i]}
+            </label>
+
+            <br><br>
+        `;
+    }
+
+    html += `
+        <button onclick="buatEmail()">OK</button>
+    `;
+
+    document.getElementById("program").innerHTML = html;
+}
 
 
-        // LOOP RADIO BUTTON
-        for (let i = 0; i < jumlah; i++) {
+// LANGKAH 3
+function buatEmail() {
 
-            const label = document.createElement("label");
+    let dipilih = document.querySelector(
+        'input[name="pilihan"]:checked'
+    );
 
-            const radio = document.createElement("input");
+    if (!dipilih) {
+        alert("Silakan pilih salah satu pilihan!");
+        return;
+    }
 
-            radio.type = "radio";
-            radio.name = "status";
-            radio.value = pilihanRadio[i];
+    let pilihanTerpilih = dipilih.value;
 
-            label.appendChild(radio);
-            label.appendChild(
-                document.createTextNode(" " + pilihanRadio[i])
-            );
+    let html = `
+        <h3>Data Diri</h3>
 
-            radioContainer.appendChild(label);
-            radioContainer.appendChild(
-                document.createElement("br")
-            );
+        <p>Nama : ${nama}</p>
+        <p>Jumlah Pilihan : ${jumlah}</p>
+
+        <h3>Pilihan :</h3>
+
+        <p>
+            Pilihan yang dipilih:
+            <b>${pilihanTerpilih}</b>
+        </p>
+
+        <h3>Email</h3>
+
+        <label>Email :</label>
+        <input type="email"
+               id="email"
+               placeholder="contoh@email.com">
+
+        <br><br>
+
+        <button onclick="hasilAkhir()">OK</button>
+    `;
+
+    document.getElementById("program").innerHTML = html;
+}
+
+
+// LANGKAH 4
+function hasilAkhir() {
+
+    let email = document.getElementById("email").value.trim();
+
+    if (email === "") {
+        alert("Email harus diisi!");
+        return;
+    }
+
+    // Pola email
+    let polaEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!polaEmail.test(email)) {
+        alert("Format email tidak valid!");
+        return;
+    }
+
+    let dipilih = document.querySelector(
+        'input[name="pilihan"]:checked'
+    );
+
+    let pilihanTerpilih = dipilih.value;
+
+    let daftarPilihan = "";
+
+    for (let i = 0; i < pilihan.length; i++) {
+
+        if (i === pilihan.length - 1) {
+            daftarPilihan += "dan " + pilihan[i];
+        } else {
+            daftarPilihan += pilihan[i] + ", ";
         }
     }
 
+    document.getElementById("program").innerHTML = `
+        <h2>Hasil</h2>
 
-    // Jalankan pertama kali
-    buatPilihan();
-
-
-    // Jika jumlah berubah
-    inputJumlah.addEventListener("change", function () {
-        buatPilihan();
-    });
-
-
-    // ==========================================
-    // VALIDASI EMAIL
-    // ==========================================
-
-    inputEmail.addEventListener("blur", function () {
-
-        const patternEmail =
-            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-        if (!patternEmail.test(inputEmail.value)) {
-
-            alert(
-                "Email tidak valid!\n" +
-                "Silakan masukkan email yang benar.\n" +
-                "Contoh: nama@gmail.com"
-            );
-
-            inputEmail.value = "";
-            inputEmail.focus();
-        }
-    });
-
-
-    // ==========================================
-    // TOMBOL OUTPUT
-    // ==========================================
-
-    tombol.addEventListener("click", function () {
-
-        // Validasi nama
-        if (inputNama.value.trim() === "") {
-
-            alert("Nama harus diisi!");
-
-            inputNama.focus();
-
-            return;
-        }
-
-
-        // Validasi email
-        const patternEmail =
-            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-        if (!patternEmail.test(inputEmail.value)) {
-
-            alert("Email tidak valid!");
-
-            inputEmail.focus();
-
-            return;
-        }
-
-
-        // Ambil checkbox yang dipilih
-        const checkboxTerpilih =
-            document.querySelectorAll(
-                'input[name="hobi"]:checked'
-            );
-
-        let hasilCheckbox = [];
-
-        checkboxTerpilih.forEach(function (checkbox) {
-            hasilCheckbox.push(checkbox.value);
-        });
-
-
-        // Ambil radio yang dipilih
-        const radioTerpilih =
-            document.querySelector(
-                'input[name="status"]:checked'
-            );
-
-
-        let hasilRadio = "";
-
-        if (radioTerpilih) {
-            hasilRadio = radioTerpilih.value;
-        } else {
-            hasilRadio = "Belum memilih";
-        }
-
-
-        // Ambil dropdown
-        const hasilDropdown = dropdown.value;
-
-
-        // ==========================================
-        // OUTPUT DENGAN JAVASCRIPT DOM
-        // ==========================================
-
-        output.innerHTML = "";
-
-        const pNama = document.createElement("p");
-        pNama.textContent = "Nama: " + inputNama.value;
-
-        const pEmail = document.createElement("p");
-        pEmail.textContent = "Email: " + inputEmail.value;
-
-        const pHobi = document.createElement("p");
-        pHobi.textContent =
-            "Hobi: " +
-            (hasilCheckbox.length > 0
-                ? hasilCheckbox.join(", ")
-                : "Belum memilih");
-
-        const pProdi = document.createElement("p");
-        pProdi.textContent =
-            "Program Studi: " + hasilDropdown;
-
-        const pStatus = document.createElement("p");
-        pStatus.textContent =
-            "Status: " + hasilRadio;
-
-
-        output.appendChild(pNama);
-        output.appendChild(pEmail);
-        output.appendChild(pHobi);
-        output.appendChild(pProdi);
-        output.appendChild(pStatus);
-    });
-
-});
+        <p>
+            Hallo, nama saya <b>${nama}</b>,
+            email <b>${email}</b>.
+            Saya mempunyai sejumlah <b>${jumlah}</b>
+            pilihan yaitu <b>${daftarPilihan}</b>,
+            dan saya memilih <b>${pilihanTerpilih}</b>.
+        </p>
+    `;
+}
